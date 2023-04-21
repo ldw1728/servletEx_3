@@ -13,6 +13,14 @@
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
 
+  <!-- spring(ioc container)의 설정파일 위치 -->
+  <!-- xml파일위치 혹은 configClass명시 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>config.AppConfig</param-value>
+  </context-param>
+
+
   <!--
   리스너로부터 생성되는 contextclass 정의.
   default로 XmlWebApplicationContext설정되어 xml설정파일일 경우 생략가능하지만
@@ -23,24 +31,24 @@
     <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
   </context-param>
 
-  <!-- spring(ioc container)의 설정파일 위치 -->
-  <!-- xml파일위치 혹은 configClass명시 -->
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>config.AppConfig</param-value>
-  </context-param>
 
 
-
-
+<!-- DispatcherServlet을 사용하여 frontController패턴적용. -->
   <servlet>
-    <servlet-name>helloServlet</servlet-name>
-    <servlet-class>src.HelloServlet</servlet-class>
+    <servlet-name>app</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextClass</param-name>
+      <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </init-param>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>config.WebConfig</param-value>
+    </init-param>
   </servlet>
-
   <servlet-mapping>
-    <servlet-name>helloServlet</servlet-name>
-    <url-pattern>/hello</url-pattern>
+    <servlet-name>app</servlet-name>
+    <url-pattern>/</url-pattern> <!-- /app 으로시작하는 모든 url에 적용-->
   </servlet-mapping>
 
 
