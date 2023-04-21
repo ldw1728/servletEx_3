@@ -1,24 +1,37 @@
-<!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
-<web-app>
+<web-app  version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
   <display-name>Archetype Created Web Application</display-name>
 
-  <filter>
-    <filter-name>myFilter</filter-name>
-    <filter-class>src.MyFilter</filter-class>
-  </filter>
 
-  <filter-mapping>
-    <filter-name>myFilter</filter-name>
-    <servlet-name>helloServlet</servlet-name>
-  </filter-mapping>
-  
+  <!-- servletContext에 WebApplicationContext를 추가하는 리스너
+       servletContext초기화될때 발생하는 메소드(contextInitialized)에서 WebApplicationContext초기화.
+       ContextLoader를 상속받고있다.-->
   <listener>
-    <listener-class>src.MyListener</listener-class>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+
+  <!--
+  리스너로부터 생성되는 contextclass 정의.
+  default로 XmlWebApplicationContext설정되어 xml설정파일일 경우 생략가능하지만
+  class로 설정파일을 적용하려면 contextClass태그를 명시해줘야함.
+      -->
+  <context-param>
+    <param-name>contextClass</param-name>
+    <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+  </context-param>
+
+  <!-- spring(ioc container)의 설정파일 위치 -->
+  <!-- xml파일위치 혹은 configClass명시 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>config.AppConfig</param-value>
+  </context-param>
+
+
+
 
   <servlet>
     <servlet-name>helloServlet</servlet-name>
@@ -31,7 +44,7 @@
   </servlet-mapping>
 
 
-
+<!-- filter -> listener -> servlet 순으로 작성. -->
 
 </web-app>
 
