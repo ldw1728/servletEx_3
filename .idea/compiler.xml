@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="servletEx" />
+        <module name="servletEx_3" />
         <module name="servletEx_2" />
       </profile>
     </annotationProcessing>

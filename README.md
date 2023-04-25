@@ -1,1 +1,2 @@
-serlvet Filter and Listener
+commit 1
+* use InternalResourceViewResolver of dispatcherServlet
