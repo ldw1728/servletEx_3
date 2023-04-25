@@ -5,34 +5,6 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
-
-  <!-- servletContext에 WebApplicationContext를 추가하는 리스너
-       servletContext초기화될때 발생하는 메소드(contextInitialized)에서 WebApplicationContext초기화.
-       ContextLoader를 상속받고있다.-->
-  <listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-  </listener>
-
-  <!-- spring(ioc container)의 설정파일 위치 -->
-  <!-- xml파일위치 혹은 configClass명시 -->
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>config.AppConfig</param-value>
-  </context-param>
-
-
-  <!--
-  리스너로부터 생성되는 contextclass 정의.
-  default로 XmlWebApplicationContext설정되어 xml설정파일일 경우 생략가능하지만
-  class로 설정파일을 적용하려면 contextClass태그를 명시해줘야함.
-      -->
-  <context-param>
-    <param-name>contextClass</param-name>
-    <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
-  </context-param>
-
-
-
 <!-- DispatcherServlet을 사용하여 frontController패턴적용. -->
   <servlet>
     <servlet-name>app</servlet-name>
