@@ -26,9 +26,8 @@ public class HelloController {
 
     //@RequestMapping get 사용
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(){
+    public void index(){
 
-        return "index";
     }
 
     //@GetMapping 사용
